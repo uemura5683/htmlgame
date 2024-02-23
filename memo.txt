@@ -1,0 +1,32 @@
+https://zenn.dev/tomi/articles/2020-11-10-go-web11
+
+https://ebitengine.org/ja/documents/webassembly.html
+
+https://github.com/demouth/suika-game-go
+
+https://zenn.dev/demouth/articles/e11e4802047343#discuss
+
+https://zenn.dev/hamao/articles/16fa30b6c73ea6
+
+https://github.com/hamao0820/goids-wasm/blob/main/main.wasm
+
+
+-----
+
+memo
+
+
+以下を実行するとmain.goからmain.wasmが生成される。
+
+GOOS=js GOARCH=wasm go build -o main.wasm main.go
+
+cp "$(go env GOROOT)/misc/wasm/wasm_exec.js" .
+
+でjsのファイルが追加される。
+
+
+GOOS=js GOARCH=wasm go build -o main.wasm main.go
+
+コンパイル実行
+
+-----

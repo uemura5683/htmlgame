@@ -1,30 +1,29 @@
 package main
 
 import (
-	"log"
-
-	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
+	"syscall/js"
+	"fmt"
 )
 
-type Game struct{}
-
-func (g *Game) Update() error {
-	return nil
-}
-
-func (g *Game) Draw(screen *ebiten.Image) {
-	ebitenutil.DebugPrint(screen, "Hello, World!")
-}
-
-func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
-	return 320, 240
-}
 
 func main() {
-	ebiten.SetWindowSize(640, 480)
-	ebiten.SetWindowTitle("Hello, World!")
-	if err := ebiten.RunGame(&Game{}); err != nil {
-		log.Fatal(err)
-	}
+	c := make(chan struct{})
+	window := js.Global()
+	document := window.Get("document")
+	canvasEl := document.Call("getElementById", "canvas")
+
+	bodyW := window.Get("innerWidth").Float()
+	bodyH := window.Get("innerHeight").Float()
+	fmt.Println(bodyW, bodyH)
+	canvasEl.Set("width", bodyW)
+	canvasEl.Set("height", bodyH)
+	window.Call("addEventListener", "resize", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+		bodyW = window.Get("innerWidth").Float()
+		bodyH = window.Get("innerHeight").Float()
+		canvasEl.Set("width", bodyW)
+		canvasEl.Set("height", bodyH)
+		return nil
+	}))
+
+	<-c
 }
