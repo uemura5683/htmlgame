@@ -13,6 +13,10 @@ https://github.com/hamao0820/goids-wasm/blob/main/main.wasm
 
 -----
 
+
+go runさせる二は
+go run github.com/hajimehoshi/wasmserve@latest
+
 memo
 
 
