@@ -1,7 +1,11 @@
-<!DOCTYPE html>
-<html lang="ja">
+<!doctype html>
+<html>
   <head>
-    <title>go webassembly</title>
+    <meta http-equiv="content-type" content="text/html charset=utf-8" />
+    <meta description="HTML Game Pug/SCSS animation" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>HTML Game</title>
+    <link href="style.css" rel="stylesheet">
     <script src="wasm_exec.js"></script>
     <script>
       const go = new Go();
@@ -12,20 +16,49 @@
         go.run(res.instance);
       });
     </script>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-      }
-
-      #canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-      }
-    </style>
   </head>
   <body>
-    <canvas id="canvas"></canvas>
+    <div id="container">
+      <div class="l-game-box">
+        <div class="m-game-box-left">
+          <div class="c-score-wrap">
+            <div class="c-title">Score</div>
+            <div class="c-score-wrap-inner">
+              <div class="c-score-data">
+                <div class="c-score-data-inner c-score-data-inner-1">0</div>
+              </div>
+            </div>
+          </div>
+          <div class="c-rank-wrap">
+            <div class="c-title">Rank</div>
+            <div class="c-rank-wrap-inner">
+              <div class="c-rank-component c-rank1"><span class="c-rank-num1"><img src="https://htmlgame-animation.vercel.app/images/no_1.svg" alt="Rank No.1" width="30" /></span><span class="c-rank-score">1988</span></div>
+              <div class="c-rank-component c-rank2"><span class="c-rank-num2"><img src="https://htmlgame-animation.vercel.app/images/no_2.svg" alt="Rank No.2" width="30" /></span><span class="c-rank-score">1376</span></div>
+              <div class="c-rank-component c-rank3"><span class="c-rank-num3"><img src="https://htmlgame-animation.vercel.app/images/no_3.svg" alt="Rank No.3" width="30" /></span><span class="c-rank-score">1235</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="m-game-box-center">
+          <div class="c-box-wrap">
+            <canvas id="canvas"></canvas>
+            <div class="c-box-wrap-bg"></div>
+          </div>
+        </div>
+        <div class="m-game-box-right">
+          <div class="c-next-wrap">
+            <div class="c-title">Next</div>
+            <div class="c-next-wrap-inner">
+              <span class="c-next-anime c-next-anime1">
+                <img class="c-next-images" src="https://htmlgame-animation.vercel.app/images/go.svg" alt="Go" width="40" />
+              </span>
+            </div>
+          </div>
+          <div class="c-rings-wrap">
+            <div class="c-title">Rings</div>
+            <div class="c-rings-wrap-inner"><img class="c-rings-images-inner" src="https://htmlgame-animation.vercel.app/images/go.svg" alt="Go" width="40" /><img class="c-rings-images-inner" src="https://htmlgame-animation.vercel.app/images/py.svg" alt="Phython" width="40" /><img class="c-rings-images-inner" src="https://htmlgame-animation.vercel.app/images/pug.svg" alt="Pug" width="40" /><img class="c-rings-images-inner" src="https://htmlgame-animation.vercel.app/images/ts.svg" alt="TypeScript" width="40" /><img class="c-rings-images-inner" src="https://htmlgame-animation.vercel.app/images/js.svg" alt="JavaScript" width="40" /><img class="c-rings-images-inner" src="https://htmlgame-animation.vercel.app/images/css.svg" alt="CSS" width="40" /><img class="c-rings-images-inner" src="https://htmlgame-animation.vercel.app/images/html.svg" alt="HTML" width="40" /></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

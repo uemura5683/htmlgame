@@ -2,7 +2,6 @@ package main
 
 import (
 	"syscall/js"
-	"math"
 	"fmt"
 )
 
@@ -13,7 +12,7 @@ func main() {
 	document := window.Get("document")
 	canvasEl := document.Call("getElementById", "canvas")
 
-	bodyW := window.Get("innerWidth").Float()
+	bodyW := window.Get("innerWidth").Float() * 0.44
 	bodyH := window.Get("innerHeight").Float()
 	fmt.Println(bodyW, bodyH)
 	canvasEl.Set("width", bodyW)
@@ -37,15 +36,17 @@ func main() {
 		ctx.Call("clearRect", 0, 0, bodyW, bodyH)
 	}
 
-	t := 0.0
+	e := goids.CreateEnv(bodyW, bodyH, 30, 4, 2, 100)
 	var animation js.Func
 	animation = js.FuncOf(func(this js.Value, args []js.Value) interface{} {
-		t += 1
-		t = math.Mod(t, 360)
 		clearCanvas()
-		x := bodyW/4*math.Sin(t*math.Pi/180) + bodyW/2
-		y := bodyH/4*math.Sin(2*t*math.Pi/180) + bodyH/2
-		drawImage(x, y)
+		e.SetHeight(bodyH)
+		e.SetWidth(bodyW)
+		e.Update()
+		for _, goid := range e.Goids() {
+			drawImage(goid.Position().X, goid.Position().Y, goid.ImageType())
+		}
+
 		window.Call("requestAnimationFrame", animation)
 		return nil
 	})

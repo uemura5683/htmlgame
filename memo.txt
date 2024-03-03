@@ -10,6 +10,8 @@ https://zenn.dev/hamao/articles/16fa30b6c73ea6
 
 https://github.com/hamao0820/goids-wasm/blob/main/main.wasm
 
+https://github.com/hamao0820/goids-wasm/tree/main
+
 
 -----
 
